@@ -263,6 +263,19 @@ export default function HomePage() {
         {/* Quick Actions */}
         <section>
           <h2 className="text-base font-bold text-gray-900 mb-3">Quick Actions</h2>
+          {/* Spiritual Companion — featured */}
+          <Link
+            href="/companion"
+            className="block bg-gradient-to-r from-slate-800 to-slate-700 rounded-2xl p-4 mb-3 hover:opacity-95 transition-opacity"
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">✨</span>
+              <div>
+                <div className="text-sm font-bold text-white">Spiritual Companion</div>
+                <div className="text-xs text-slate-400">Talk with God, saints, or divine guides</div>
+              </div>
+            </div>
+          </Link>
           <div className="grid grid-cols-2 gap-3">
             {[
               { href: '/pray', icon: '📔', label: 'Prayer Journal', bg: 'bg-purple-50', text: 'text-purple-700' },

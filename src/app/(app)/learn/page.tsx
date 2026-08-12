@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Search, Lock, Star, Users, Play, Clock, ChevronRight } from 'lucide-react'
 import { clsx } from 'clsx'
 import { courses, studyPlans, sermons } from '@/lib/data'
+import UpgradeModal from '@/components/UpgradeModal'
 
 type Tab = 'plans' | 'courses' | 'sermons'
 
@@ -309,47 +310,8 @@ export default function LearnPage() {
         )}
       </div>
 
-      {/* Upgrade Modal */}
       {showUpgradeModal && (
-        <div
-          className="fixed inset-0 bg-black/50 flex items-end justify-center z-50 animate-fade-in"
-          onClick={() => setShowUpgradeModal(false)}
-        >
-          <div
-            className="bg-white rounded-t-3xl w-full max-w-lg p-6 pb-10 animate-slide-up"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mb-6" />
-            <div className="text-center mb-6">
-              <div className="text-5xl mb-3">🎓</div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Unlock Premium Content</h2>
-              <p className="text-gray-600 text-sm">
-                Get access to 50+ courses, the full sermon archive, audio content, and more.
-              </p>
-            </div>
-            <div className="bg-brand-50 rounded-2xl p-4 mb-5">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="font-bold text-gray-900">Individual Plan</div>
-                  <div className="text-sm text-gray-500">Full access for one person</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-2xl font-extrabold text-brand-600">$9</div>
-                  <div className="text-xs text-gray-400">/month</div>
-                </div>
-              </div>
-            </div>
-            <button className="w-full bg-brand-600 text-white font-bold py-3.5 rounded-xl text-base hover:bg-brand-700 transition-colors mb-3">
-              Start 7-day free trial
-            </button>
-            <button
-              onClick={() => setShowUpgradeModal(false)}
-              className="w-full text-gray-400 text-sm py-2 hover:text-gray-600 transition-colors"
-            >
-              Maybe later
-            </button>
-          </div>
-        </div>
+        <UpgradeModal trigger="course" onClose={() => setShowUpgradeModal(false)} />
       )}
     </div>
   )

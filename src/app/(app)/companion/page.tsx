@@ -5,6 +5,7 @@ import { Send, Lock, Sparkles, AlertTriangle } from 'lucide-react'
 import { traditions, personas, getPersonasByTradition, defaultTraditionId, defaultPersonaId } from '@/lib/personas'
 import type { TraditionId, Persona } from '@/lib/personas'
 import { currentUser } from '@/lib/data'
+import UpgradeModal from '@/components/UpgradeModal'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -323,31 +324,8 @@ export default function CompanionPage() {
         </p>
       </div>
 
-      {/* ── Upgrade modal ── */}
       {showUpgrade && (
-        <div
-          className="fixed inset-0 bg-black/50 z-50 flex items-end"
-          onClick={(e) => { if (e.target === e.currentTarget) setShowUpgrade(false) }}
-        >
-          <div className="w-full max-w-lg mx-auto bg-white rounded-t-3xl p-6 pb-10 animate-slide-up">
-            <div className="text-4xl text-center mb-3">🔥</div>
-            <h2 className="text-lg font-bold text-center text-gray-900 mb-1">Premium Companion Required</h2>
-            <p className="text-sm text-center text-gray-500 mb-5">
-              The Adversary is a premium feature — a philosophical sparring partner in the tradition of C.S. Lewis's Screwtape Letters. Available on Individual and Family plans.
-            </p>
-            <div className="space-y-2">
-              <button className="w-full bg-brand-600 text-white font-bold py-3 rounded-2xl hover:bg-brand-700 transition-colors">
-                Upgrade to Individual — $9/mo
-              </button>
-              <button
-                onClick={() => setShowUpgrade(false)}
-                className="w-full text-gray-400 py-2 text-sm font-medium"
-              >
-                Maybe later
-              </button>
-            </div>
-          </div>
-        </div>
+        <UpgradeModal trigger="companion" onClose={() => setShowUpgrade(false)} />
       )}
     </div>
   )

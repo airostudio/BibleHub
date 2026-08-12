@@ -10,10 +10,12 @@ import {
   prayerRequests,
   groups,
 } from '@/lib/data'
+import UpgradeModal from '@/components/UpgradeModal'
 
 export default function HomePage() {
   const [devotionalExpanded, setDevotionalExpanded] = useState(false)
   const [prayedIds, setPrayedIds] = useState<Set<string>>(new Set())
+  const [showUpgrade, setShowUpgrade] = useState(false)
   const hour = new Date().getHours()
   const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening'
 
@@ -296,23 +298,36 @@ export default function HomePage() {
         </section>
 
         {/* Upgrade nudge (free users only) */}
-        <section>
-          <div className="bg-gradient-to-r from-brand-600 to-purple-600 rounded-2xl p-5 text-white">
-            <div className="flex items-start gap-3">
-              <Lock size={20} className="flex-shrink-0 mt-0.5 text-brand-200" />
-              <div>
-                <h3 className="text-sm font-bold mb-1">Unlock 50+ courses &amp; more</h3>
-                <p className="text-xs text-brand-200 mb-3">
-                  Get the full course library, audio content, private groups, and an ad-free experience.
-                </p>
-                <button className="bg-white text-brand-700 text-sm font-bold px-4 py-2 rounded-full hover:bg-brand-50 transition-colors">
-                  Try Individual for $9/mo →
-                </button>
+        {currentUser.plan === 'free' && (
+          <section>
+            <div className="bg-gradient-to-r from-brand-600 to-purple-600 rounded-2xl p-5 text-white">
+              <div className="flex items-start gap-3">
+                <Lock size={20} className="flex-shrink-0 mt-0.5 text-brand-200" />
+                <div>
+                  <h3 className="text-sm font-bold mb-1">Unlock 50+ courses &amp; more</h3>
+                  <p className="text-xs text-brand-200 mb-3">
+                    Get the full course library, audio content, private groups, and an ad-free experience.
+                  </p>
+                  <button
+                    onClick={() => setShowUpgrade(true)}
+                    className="bg-white text-brand-700 text-sm font-bold px-4 py-2 rounded-full hover:bg-brand-50 transition-colors"
+                  >
+                    Start Free Trial →
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
       </div>
+
+      {showUpgrade && (
+        <UpgradeModal
+          trigger="general"
+          streakCount={currentUser.streak}
+          onClose={() => setShowUpgrade(false)}
+        />
+      )}
     </div>
   )
 }

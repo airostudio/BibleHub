@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Settings, Bell, Shield, CreditCard, LogOut, ChevronRight, Flame, Target, BookOpen, Heart } from 'lucide-react'
 import { currentUser } from '@/lib/data'
+import UpgradeModal from '@/components/UpgradeModal'
 
 const settingsGroups = [
   {
@@ -28,6 +29,7 @@ export default function ProfilePage() {
   const [editingGoal, setEditingGoal] = useState<string | null>(null)
   const [goals, setGoals] = useState(currentUser.spiritualGoals)
   const [newGoal, setNewGoal] = useState('')
+  const [showUpgrade, setShowUpgrade] = useState(false)
 
   function addGoal() {
     if (!newGoal.trim()) return
@@ -214,16 +216,22 @@ export default function ProfilePage() {
               <p className="text-xs text-brand-200 mb-4">
                 Unlock 50+ courses, private groups, audio content, and a fully ad-free experience.
               </p>
-              <div className="flex gap-3">
-                <button className="flex-1 bg-white text-brand-700 text-sm font-bold py-2.5 rounded-xl hover:bg-brand-50 transition-colors">
-                  Individual — $9/mo
-                </button>
-                <button className="flex-1 bg-white/20 text-white text-sm font-semibold py-2.5 rounded-xl hover:bg-white/30 transition-colors">
-                  Family — $19/mo
-                </button>
-              </div>
+              <button
+                onClick={() => setShowUpgrade(true)}
+                className="w-full bg-white text-brand-700 text-sm font-bold py-2.5 rounded-xl hover:bg-brand-50 transition-colors"
+              >
+                Start 7-Day Free Trial →
+              </button>
             </div>
           </section>
+        )}
+
+        {showUpgrade && (
+          <UpgradeModal
+            trigger="general"
+            streakCount={currentUser.streak}
+            onClose={() => setShowUpgrade(false)}
+          />
         )}
 
         {/* Settings */}

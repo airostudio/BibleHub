@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, BookOpen, Users, Heart, HandHeart } from 'lucide-react'
+import { Home, BookOpen, Users, Heart, HandHeart, Sparkles } from 'lucide-react'
 import { clsx } from 'clsx'
 
 const tabs = [
   { href: '/home', label: 'Home', icon: Home },
   { href: '/pray', label: 'Pray', icon: Heart },
+  { href: '/companion', label: 'Guide', icon: Sparkles },
   { href: '/learn', label: 'Learn', icon: BookOpen },
   { href: '/community', label: 'Community', icon: Users },
   { href: '/give', label: 'Give', icon: HandHeart },

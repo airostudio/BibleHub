@@ -12,20 +12,33 @@ export default function GivePage() {
   const [donationSuccess, setDonationSuccess] = useState<string | null>(null)
   const [recurringSetup, setRecurringSetup] = useState(false)
   const [donatedCampaigns, setDonatedCampaigns] = useState<Set<string>>(new Set())
+  const [checkingOut, setCheckingOut] = useState(false)
 
   const presetAmounts = ['$10', '$25', '$50', '$100', '$250']
   const totalGiven = givingHistory.reduce((sum, t) => sum + t.amount, 0)
   const recurringTotal = givingHistory.filter((t) => t.recurring).reduce((sum, t) => sum + t.amount, 0)
 
-  function handleDonate(campaignId: string) {
+  async function handleDonate(campaignId: string) {
     const amount = parseInt((customAmount || donationAmount).replace('$', ''))
     if (!amount || amount < 1) return
-    setDonatedCampaigns((prev) => new Set(prev).add(campaignId))
-    setDonationSuccess(campaigns.find((c) => c.id === campaignId)?.title ?? 'Campaign')
-    setDonatingTo(null)
-    setDonationAmount('')
-    setCustomAmount('')
-    setTimeout(() => setDonationSuccess(null), 5000)
+    const campaign = campaigns.find((c) => c.id === campaignId)
+    if (!campaign) return
+    setCheckingOut(true)
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'donation', amount, campaignName: campaign.title, campaignId }),
+      })
+      const data = await res.json()
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        setCheckingOut(false)
+      }
+    } catch {
+      setCheckingOut(false)
+    }
   }
 
   const progressPercent = (raised: number, goal: number) => Math.min(100, Math.round((raised / goal) * 100))
@@ -295,10 +308,17 @@ export default function GivePage() {
 
             <button
               onClick={() => handleDonate(donatingTo)}
-              disabled={!donationAmount && !customAmount}
-              className="w-full bg-rose-600 text-white font-bold py-3.5 rounded-xl text-base hover:bg-rose-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              disabled={(!donationAmount && !customAmount) || checkingOut}
+              className="w-full bg-rose-600 text-white font-bold py-3.5 rounded-xl text-base hover:bg-rose-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
             >
-              Give {customAmount ? `$${customAmount}` : donationAmount || 'Now'}
+              {checkingOut ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Redirecting…
+                </>
+              ) : (
+                `Give ${customAmount ? `$${customAmount}` : donationAmount || 'Now'}`
+              )}
             </button>
             <p className="text-center text-xs text-gray-400 mt-3">
               Secure payment · Receipt emailed to you

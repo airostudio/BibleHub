@@ -15,7 +15,7 @@ export const currentUser = {
 export const todayDevotional = {
   id: 'dev-001',
   title: 'Finding Peace in Uncertainty',
-  date: 'Monday, April 28, 2025',
+  date: new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
   scripture: 'Philippians 4:6–7',
   scriptureText:
     '"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus."',

@@ -62,7 +62,7 @@ const testimonials = [
   },
   {
     quote:
-      "Our small group uses BibleHub together. The shared prayer wall alone has transformed how we pray for each other between Sunday meetings.",
+      "Our small group uses Elevate Chapel together. The shared prayer wall alone has transformed how we pray for each other between Sunday meetings.",
     name: 'Rachel & Tom K.',
     role: 'Couple, Nashville',
     initials: 'RK',
@@ -132,10 +132,10 @@ const plans = [
 const faqs = [
   {
     q: 'Is this platform for one religion, or all faiths?',
-    a: 'BibleHub serves people across faith traditions — Christian, Jewish, Muslim, and people on spiritual journeys without a specific label. While much of our current content is rooted in Christian tradition, we are actively expanding to serve more communities.',
+    a: 'Elevate Chapel serves people across faith traditions — Christian, Jewish, Muslim, and people on spiritual journeys without a specific label. While much of our current content is rooted in Christian tradition, we are actively expanding to serve more communities.',
   },
   {
-    q: 'Can my church or ministry use BibleHub?',
+    q: 'Can my church or ministry use Elevate Chapel?',
     a: 'Yes — we offer an Organization plan for churches, mosques, temples, and ministries. It includes member management, donation tools, announcement boards, livestream support, and a custom community space.',
   },
   {
@@ -148,7 +148,7 @@ const faqs = [
   },
   {
     q: 'What makes this different from YouVersion or other Bible apps?',
-    a: "BibleHub is a full spiritual community platform, not just a reading app. We combine daily content, genuine community, premium learning, and giving tools in one place — designed for depth, not just daily engagement.",
+    a: "Elevate Chapel is a full spiritual community platform, not just a reading app. We combine daily content, genuine community, premium learning, and giving tools in one place — designed for depth, not just daily engagement.",
   },
 ]
 
@@ -160,9 +160,9 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
-              <span className="text-white text-sm font-bold">B</span>
+              <span className="text-white text-sm font-bold">E</span>
             </div>
-            <span className="text-lg font-bold text-gray-900">BibleHub</span>
+            <span className="text-lg font-bold text-gray-900">Elevate Chapel</span>
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#features" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">Features</a>
@@ -244,7 +244,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Everything for your spiritual life</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              From your first morning prayer to giving to a cause you love — BibleHub is built for the full arc of faith.
+              From your first morning prayer to giving to a cause you love — Elevate Chapel is built for the full arc of faith.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -490,13 +490,19 @@ export default function LandingPage() {
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">B</span>
+                  <span className="text-white text-sm font-bold">E</span>
                 </div>
-                <span className="text-white font-bold">BibleHub</span>
+                <span className="text-white font-bold">Elevate Chapel</span>
               </div>
-              <p className="text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed mb-3">
                 A daily spiritual companion for learning, prayer, community, and giving.
               </p>
+              <a
+                href="mailto:info@elevatechapel.online"
+                className="text-sm text-brand-400 hover:text-brand-300 transition-colors"
+              >
+                info@elevatechapel.online
+              </a>
             </div>
             {[
               {
@@ -527,7 +533,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm">© 2025 BibleHub. Built with care for faith communities worldwide.</p>
+            <p className="text-sm">© 2025 Elevate Chapel App. Built with care for faith communities worldwide.</p>
             <p className="text-xs text-gray-600">
               We do not sell your spiritual data. Ever.
             </p>

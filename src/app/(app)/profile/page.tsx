@@ -263,7 +263,7 @@ export default function ProfilePage() {
         </section>
 
         <p className="text-center text-xs text-gray-300 pb-2">
-          BibleHub v0.1.0 · We do not sell your spiritual data.
+          Elevate Chapel App v0.1.0 · We do not sell your spiritual data.
         </p>
       </div>
     </div>

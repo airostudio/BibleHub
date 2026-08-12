@@ -507,24 +507,39 @@ export default function LandingPage() {
             {[
               {
                 title: 'Platform',
-                links: ['Features', 'Pricing', 'For Organizations', 'Mobile App'],
+                links: [
+                  { label: 'Features', href: '/features' },
+                  { label: 'Pricing', href: '/pricing' },
+                  { label: 'For Organizations', href: '/for-organizations' },
+                  { label: 'Mobile App', href: '/mobile-app' },
+                ],
               },
               {
                 title: 'Company',
-                links: ['About', 'Blog', 'Careers', 'Press'],
+                links: [
+                  { label: 'About', href: '/about' },
+                  { label: 'Blog', href: '/blog' },
+                  { label: 'Careers', href: '/careers' },
+                  { label: 'Press', href: '/press' },
+                ],
               },
               {
                 title: 'Support',
-                links: ['Help Center', 'Community Guidelines', 'Privacy Policy', 'Terms of Service'],
+                links: [
+                  { label: 'Help Center', href: '/help' },
+                  { label: 'Community Guidelines', href: '/community-guidelines' },
+                  { label: 'Privacy Policy', href: '/privacy' },
+                  { label: 'Terms of Service', href: '/terms' },
+                ],
               },
             ].map(({ title, links }) => (
               <div key={title}>
                 <h4 className="text-white font-semibold text-sm mb-4">{title}</h4>
                 <ul className="space-y-2">
-                  {links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="text-sm hover:text-white transition-colors">
-                        {link}
+                  {links.map(({ label, href }) => (
+                    <li key={label}>
+                      <a href={href} className="text-sm hover:text-white transition-colors">
+                        {label}
                       </a>
                     </li>
                   ))}
